@@ -25,7 +25,7 @@ function App() {
 
 	return (
 		<div className="container p-6 sm:grid sm:grid-cols-3 sm:gap-5">
-			<div className="bg-slate-500 flex flex-col justify-center items-center py-4 sm:col-span-1">
+			<div className="bg-slate-500 flex flex-col justify-center items-center py-4 mb-8 sm:col-span-1">
 				<h1>NPC Dispenser</h1>
 				<div className="flex flex-col items-start w-3/4 space-y-2">
 					<label htmlFor="species">Species</label>
@@ -109,7 +109,39 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div className="sm:col-span-2"></div>
+			<div className="bg-slate-800 text-white space-y-8 sm:col-span-2">
+				<div className="bg-pink-700">
+					<h2>Description</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Quisquam, voluptatum. Quisquam, voluptatum. Quisquam,
+						voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
+					</p>
+				</div>
+				<div className="bg-orange-700">
+					<h2>Personality</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Quisquam, voluptatum. Quisquam, voluptatum. Quisquam,
+						voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
+					</p>
+				</div>
+				<div className="bg-green-900">
+					<h2>Ability Scores</h2>
+					<p>Strength: 10</p>
+					<p>Dexterity: 10</p>
+					<p>Constitution: 10</p>
+					<p>Intelligence: 10</p>
+					<p>Wisdom: 10</p>
+					<p>Charisma: 10</p>
+				</div>
+				<div className="bg-blue-900">
+					<h2>Relationships</h2>
+					<p>Sexual Orientation: Straight</p>
+					<p>Relationship Status: Single</p>
+					<p>Children: 0</p>
+				</div>
+			</div>
 		</div>
 	);
 }
