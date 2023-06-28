@@ -66,13 +66,6 @@ function App() {
 						<option value="adventurer">Adventurer</option>
 						<option value="artisan">Artisan</option>
 						<option value="criminal">Criminal</option>
-						<option value="entertainer">Entertainer</option>
-						<option value="farmer">Farmer</option>
-						<option value="fisherman">Fisherman</option>
-						<option value="herder">Herder</option>
-						<option value="hunter">Hunter</option>
-						<option value="laborer">Laborer</option>
-						<option value="merchant">Merchant</option>
 					</select>
 					<label htmlFor="personality">Personality</label>
 					<select
@@ -83,12 +76,6 @@ function App() {
 						<option value="arrogant">Arrogant</option>
 						<option value="belligerent">Belligerent</option>
 						<option value="boastful">Boastful</option>
-						<option value="bold">Bold</option>
-						<option value="brave">Brave</option>
-						<option value="cautious">Cautious</option>
-						<option value="charming">Charming</option>
-						<option value="cheerful">Cheerful</option>
-						<option value="cowardly">Cowardly</option>
 					</select>
 					<label htmlFor="quirk">Quirk</label>
 					<select name="quirk" id="quirk" className="w-full">
@@ -114,16 +101,12 @@ function App() {
 					<h2>Description</h2>
 					<p>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Quisquam, voluptatum. Quisquam, voluptatum. Quisquam,
-						voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
 					</p>
 				</div>
 				<div className="bg-orange-700">
 					<h2>Personality</h2>
 					<p>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Quisquam, voluptatum. Quisquam, voluptatum. Quisquam,
-						voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
 					</p>
 				</div>
 				<div className="bg-green-900">
