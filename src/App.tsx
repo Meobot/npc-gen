@@ -4,6 +4,7 @@ import { npcDataCollection } from "./firebase";
 import Species from "./components/Species";
 import Sex from "./components/Sex";
 import Alignment from "./components/Alignment";
+import MainDetails from "./components/MainDetails";
 
 // {npcData[0]?.humanNames.map((name, index) => (
 // 	<li key={index}>{name}</li>
@@ -46,18 +47,19 @@ function App() {
 				</div>
 			</div>
 			<div className="bg-slate-800 text-white space-y-8 sm:col-span-2">
-				<div className="bg-pink-700">
-					<h2>Description</h2>
-					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					</p>
-				</div>
+
+				<MainDetails 
+					species={species}
+					sex={sex}
+					alignment={alignment}
+				/>
+
 				<div className="bg-orange-700">
 					<h2>Personality</h2>
 					<p>
 						Lorem ipsum dolor sit amet consectetur adipisicing elit.
 					</p>
-				</div>
+				M</div>
 				<div className="bg-green-900">
 					<h2>Ability Scores</h2>
 					<p>Strength: 10</p>
