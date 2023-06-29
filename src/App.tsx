@@ -1,19 +1,30 @@
 import { useEffect, useState } from "react";
-import { getDocs } from "firebase/firestore";
 import { npcDataCollection } from "./firebase";
 import Species from "./components/Species";
 import Sex from "./components/Sex";
 import Alignment from "./components/Alignment";
 import MainDetails from "./components/MainDetails";
+import namesList from "./namesList"
 
 // {npcData[0]?.humanNames.map((name, index) => (
 // 	<li key={index}>{name}</li>
 // ))}
 
 function App() {
-	const [species, setSpecies] = useState("random");
-	const [sex, setSex] = useState("random");
-	const [alignment, setAlignment] = useState("random");
+	const [species, setSpecies] = useState("");
+	const [sex, setSex] = useState("");
+	const [alignment, setAlignment] = useState("");
+
+	//function to pull a random name from the names array
+	const getRandomName = (namesArray) => {
+		let randomIndex = Math.floor(Math.random() * namesArray.length);
+		let randomName = namesArray[randomIndex];
+		return randomName;
+	};
+
+	useEffect(() => {
+		setSpecies(getRandomName(namesList));
+	}, []);
 
 	const handleSpeciesChange = (
 		event: React.ChangeEvent<HTMLSelectElement>
