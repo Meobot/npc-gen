@@ -1,30 +1,42 @@
 import { useEffect, useState } from "react";
 import { getDataFromField } from "../firebase";
 
-//TODO needs to display name, age, sex, race, job, orientation, relation, children, alignment
 
 function MainDetails(props) {
-    const [firstName, setFirstName] = useState("random");
-    
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+
     useEffect(() => {
-        console.log("useEffect called");
-        getDataFromField("namesDoc", "humanNames").then((data) => {
+        const firstNamesField = props.sex === "male" ? "maleNames" : "femaleNames";
+        getDataFromField("namesDoc", firstNamesField).then((data) => {
             let randomIndex = Math.floor(Math.random() * data.length);
             let randomName = data[randomIndex];
             if (randomName === undefined) {
-				setFirstName("random");
-			}
-			else {
-				setFirstName(randomName);
-			}
+                setFirstName("random");
+            } else {
+                setFirstName(randomName);
+            }
         });
-    }, []);
+    }, [props.sex]);
 
-    console.log("MainDetails rendered", firstName);
+    useEffect(() => {
+        if (props.species) {
+            const lastNamesField = `${props.species}Names`;
+            getDataFromField("namesDoc", lastNamesField).then((data) => {
+                let randomIndex = Math.floor(Math.random() * data.length);
+                let randomName = data[randomIndex];
+                if (randomName === undefined) {
+                    setLastName("");
+                } else {
+                    setLastName(randomName);
+                }
+            });
+        }
+    }, [props.species]);
 
     return (
         <div>
-            <h2>{firstName}</h2>
+            <h2>{firstName} {lastName}</h2>
         </div>
     );
 }
