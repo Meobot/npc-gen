@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getDocs } from "firebase/firestore";
 import { npcDataCollection } from "./firebase";
 import Species from "./components/Species";
-import Sex from "./components/Sex"
+import Sex from "./components/Sex";
 import Alignment from "./components/Alignment";
 
 // {npcData[0]?.humanNames.map((name, index) => (
@@ -36,13 +36,13 @@ function App() {
 				<h1>NPC Dispenser</h1>
 				<div className="flex flex-col items-start w-3/4 space-y-2">
 					<Species handleSpeciesChange={handleSpeciesChange} />
-					<Sex handleSexChange={handleSexChange}/>
+					<Sex handleSexChange={handleSexChange} />
 					<Alignment handleAlignmentChange={handleAlignmentChange} />
 					<div className="w-full flex justify-center">
 						<button className="bg-blue-500 px-6 py-2 rounded-xl">
 							Generate
 						</button>
-					A</div>
+					</div>
 				</div>
 			</div>
 			<div className="bg-slate-800 text-white space-y-8 sm:col-span-2">
