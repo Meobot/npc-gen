@@ -12,8 +12,18 @@ function App() {
 
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
+	const [personalityTrait, setPersonalityTrait] = useState("");
+	const pronouns = getPronouns()
 
-	const getRandomName = (namesArray) => {
+	function getPronouns() {
+		if (sex === "male") {
+			return "He";
+		} else if (sex === "female")
+			return "She";
+		else return "They";
+	}
+
+	const getRandomValue = (namesArray) => {
 		const randomIndex = Math.floor(Math.random() * namesArray.length);
 		const randomName = namesArray[randomIndex];
 		return randomName;
@@ -22,7 +32,7 @@ function App() {
 	useEffect(() => {
 		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
 		getDataFromField("namesDoc", firstNamesField).then((data) => {
-			const randomName = getRandomName(data);
+			const randomName = getRandomValue(data);
 			setFirstName(randomName || "random");
 		});
 	}, []);
@@ -30,9 +40,18 @@ function App() {
 	useEffect(() => {
 		const lastNamesField = `${species}Names`;
 		getDataFromField("namesDoc", lastNamesField).then((data) => {
-			const randomName = getRandomName(data);
+			const randomName = getRandomValue(data);
 			setLastName(randomName || "random");
 		});
+	}, []);
+
+	useEffect(() => {
+		getDataFromField("personalityTraitsDoc", "personalityTraitsField").then(
+			(data) => {
+				const randomTrait = getRandomValue(data);
+				setPersonalityTrait(randomTrait || "random");
+			}
+		);
 	}, []);
 
 	const handleSpeciesChange = (
@@ -59,8 +78,8 @@ function App() {
 			getDataFromField("namesDoc", firstNamesField),
 			getDataFromField("namesDoc", lastNamesField),
 		]).then(([firstNamesData, lastNamesData]) => {
-			const randomFirstName = getRandomName(firstNamesData);
-			const randomLastName = getRandomName(lastNamesData);
+			const randomFirstName = getRandomValue(firstNamesData);
+			const randomLastName = getRandomValue(lastNamesData);
 			setFirstName(randomFirstName);
 			setLastName(randomLastName);
 		});
@@ -96,9 +115,8 @@ function App() {
 				<div className="bg-orange-700">
 					<h2>Personality</h2>
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						{pronouns} {personalityTrait}
 					</p>
-					M
 				</div>
 				<div className="bg-green-900">
 					<h2>Ability Scores</h2>
