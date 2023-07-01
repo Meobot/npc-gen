@@ -15,20 +15,6 @@ function App() {
 	const [personalityTrait, setPersonalityTrait] = useState("");
 	const pronouns = getPronouns()
 
-	function getPronouns() {
-		if (sex === "male") {
-			return "He";
-		} else if (sex === "female")
-			return "She";
-		else return "They";
-	}
-
-	const getRandomValue = (namesArray) => {
-		const randomIndex = Math.floor(Math.random() * namesArray.length);
-		const randomName = namesArray[randomIndex];
-		return randomName;
-	};
-
 	useEffect(() => {
 		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
 		getDataFromField("namesDoc", firstNamesField).then((data) => {
@@ -53,6 +39,40 @@ function App() {
 			}
 		);
 	}, []);
+
+	function getPronouns() {
+		if (sex === "male") {
+			return "He";
+		} else if (sex === "female")
+			return "She";
+		else return "They";
+	}
+
+	const getRandomValue = (namesArray) => {
+		const randomIndex = Math.floor(Math.random() * namesArray.length);
+		const randomName = namesArray[randomIndex];
+		return randomName;
+	};
+
+	const getAbilityScoreValues = () => {
+		const abilityScoreValues = {
+			strength: 0,
+			dexterity: 0,
+			constitution: 0,
+			intelligence: 0,
+			wisdom: 0,
+			charisma: 0,
+		};
+
+		const abilityScoreKeys = Object.keys(abilityScoreValues);
+
+		abilityScoreKeys.forEach((abilityScoreKey) => {
+			const randomValue = Math.floor(Math.random() * 18) + 3;
+			abilityScoreValues[abilityScoreKey] = randomValue;
+		});
+
+		return abilityScoreValues;
+	};
 
 	const handleSpeciesChange = (
 		event: React.ChangeEvent<HTMLSelectElement>
@@ -120,12 +140,12 @@ function App() {
 				</div>
 				<div className="bg-green-900">
 					<h2>Ability Scores</h2>
-					<p>Strength: 10</p>
-					<p>Dexterity: 10</p>
-					<p>Constitution: 10</p>
-					<p>Intelligence: 10</p>
-					<p>Wisdom: 10</p>
-					<p>Charisma: 10</p>
+					<p>Strength: {getAbilityScoreValues().strength}</p>
+					<p>Dexterity: {getAbilityScoreValues().dexterity}</p>
+					<p>Constitution: {getAbilityScoreValues().constitution}</p>
+					<p>Intelligence: {getAbilityScoreValues().intelligence}</p>
+					<p>Wisdom: {getAbilityScoreValues().wisdom}</p>
+					<p>Charisma: {getAbilityScoreValues().charisma}</p>
 				</div>
 				<div className="bg-blue-900">
 					<h2>Relationships</h2>
