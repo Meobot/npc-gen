@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { npcDataCollection } from "./firebase";
 import Species from "./components/Species";
 import Sex from "./components/Sex";
 import Alignment from "./components/Alignment";
 import MainDetails from "./components/MainDetails";
-import namesList from "./namesList";
 import { getDataFromField } from "./firebase";
 
 function App() {
 	const [species, setSpecies] = useState("human");
-	const [sex, setSex] = useState("male");
+	const [sex, setSex] = useState("female");
 	const [alignment, setAlignment] = useState("");
 
 	const [firstName, setFirstName] = useState("");
@@ -23,22 +21,20 @@ function App() {
 	};
 
 	useEffect(() => {
-		console.log("rendered last");
-		const lastNamesField = `${species}Names`;
-		getDataFromField("namesDoc", lastNamesField).then((data) => {
-			const randomName = getRandomName(data);
-			setLastName(randomName || "random");
-		});
-	}, [species]);
-
-	useEffect(() => {
-		console.log("rendered first");
 		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
 		getDataFromField("namesDoc", firstNamesField).then((data) => {
 			const randomName = getRandomName(data);
 			setFirstName(randomName || "random");
 		});
-	}, [sex]);
+	}, []);
+
+	useEffect(() => {
+		const lastNamesField = `${species}Names`;
+		getDataFromField("namesDoc", lastNamesField).then((data) => {
+			const randomName = getRandomName(data);
+			setLastName(randomName || "random");
+		});
+	}, []);
 
 	const handleSpeciesChange = (
 		event: React.ChangeEvent<HTMLSelectElement>
@@ -57,8 +53,6 @@ function App() {
 	};
 
 	const handleClick = () => {
-		console.log("clicked");
-
 		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
 		const lastNamesField = `${species}Names`;
 
@@ -68,18 +62,8 @@ function App() {
 		]).then(([firstNamesData, lastNamesData]) => {
 			const randomFirstName = getRandomName(firstNamesData);
 			const randomLastName = getRandomName(lastNamesData);
-
-			if (randomFirstName === undefined) {
-				setFirstName("random");
-			} else {
-				setFirstName(randomFirstName);
-			}
-
-			if (randomLastName === undefined) {
-				setLastName("random");
-			} else {
-				setLastName(randomLastName);
-			}
+			setFirstName(randomFirstName);
+			setLastName(randomLastName);
 		});
 	};
 
