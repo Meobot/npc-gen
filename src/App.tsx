@@ -13,7 +13,6 @@ function App() {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 
-	//function to pull a random name from the names array
 	const getRandomName = (namesArray) => {
 		const randomIndex = Math.floor(Math.random() * namesArray.length);
 		const randomName = namesArray[randomIndex];
