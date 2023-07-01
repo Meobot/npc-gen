@@ -23,20 +23,22 @@ function App() {
 	};
 
 	useEffect(() => {
-		setSpecies(getRandomName(namesList));
-
-		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
-		getDataFromField("namesDoc", firstNamesField).then((data) => {
-			const randomName = getRandomName(data);
-			setFirstName(randomName);
-		});
-
+		console.log("rendered last");
 		const lastNamesField = `${species}Names`;
 		getDataFromField("namesDoc", lastNamesField).then((data) => {
 			const randomName = getRandomName(data);
-			setLastName(randomName);
+			setLastName(randomName || "random");
 		});
-	}, [species, sex]);
+	}, [species]);
+
+	useEffect(() => {
+		console.log("rendered first");
+		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
+		getDataFromField("namesDoc", firstNamesField).then((data) => {
+			const randomName = getRandomName(data);
+			setFirstName(randomName || "random");
+		});
+	}, [sex]);
 
 	const handleSpeciesChange = (
 		event: React.ChangeEvent<HTMLSelectElement>
@@ -55,25 +57,28 @@ function App() {
 	};
 
 	const handleClick = () => {
-		// setSpecies(getRandomName(namesList));
+		console.log("clicked");
 
 		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
-		getDataFromField("namesDoc", firstNamesField).then((data) => {
-			const randomName = getRandomName(data);
-			if (randomName === undefined) {
+		const lastNamesField = `${species}Names`;
+
+		Promise.all([
+			getDataFromField("namesDoc", firstNamesField),
+			getDataFromField("namesDoc", lastNamesField),
+		]).then(([firstNamesData, lastNamesData]) => {
+			const randomFirstName = getRandomName(firstNamesData);
+			const randomLastName = getRandomName(lastNamesData);
+
+			if (randomFirstName === undefined) {
 				setFirstName("random");
 			} else {
-				setFirstName(randomName);
+				setFirstName(randomFirstName);
 			}
-		});
 
-		const lastNamesField = `${species}Names`;
-		getDataFromField("namesDoc", lastNamesField).then((data) => {
-			const randomName = getRandomName(data);
-			if (randomName === undefined) {
+			if (randomLastName === undefined) {
 				setLastName("random");
 			} else {
-				setLastName(randomName);
+				setLastName(randomLastName);
 			}
 		});
 	};
