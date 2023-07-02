@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Species from "./components/Species";
 import Sex from "./components/Sex";
 import Alignment from "./components/Alignment";
@@ -12,7 +12,7 @@ function App() {
 	const [alignment, setAlignment] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
-	const [personalityTrait, setPersonalityTrait] = useState("");
+	const [personalityTraits, setPersonalityTraits] = useState<string[]>([]);
 	const [orientation, setOrientation] = useState("");
 	const [relationshipStatus, setRelationshipStatus] = useState("");
 	const [children, setChildren] = useState(0);
@@ -22,7 +22,11 @@ function App() {
 
 	const pronouns = getPronouns();
 
-
+	useEffect(() => {
+		getMultiplePersonalityTraits(3).then((traits) => {
+			setPersonalityTraits(traits);
+		});
+	}, []);
 
 	function getPronouns() {
 		if (sex === "male") {
@@ -96,12 +100,27 @@ function App() {
 			setJob(randomJob || "random");
 		});
 	};
-
-	const getPersonalityTrait = () => {
-		getDataFromField("personalityDoc", "personalityField").then((data) => {
-			const randomPersonalityTrait = getRandomValue(data);
-			setPersonalityTrait(randomPersonalityTrait || "random");
+	const getPersonalityTrait = (): Promise<string> => {
+		return new Promise((resolve) => {
+			getDataFromField(
+				"personalityTraitsDoc",
+				"personalityTraitsField"
+			).then((data) => {
+				const randomPersonalityTrait = getRandomValue(data);
+				resolve(randomPersonalityTrait || "random");
+			});
 		});
+	};
+
+	const getMultiplePersonalityTraits = async (
+		count: number
+	): Promise<string[]> => {
+		const personalityTraits: string[] = [];
+		for (let i = 0; i < count; i++) {
+			const trait = await getPersonalityTrait();
+			personalityTraits.push(trait);
+		}
+		return personalityTraits;
 	};
 
 	const handleClick = () => {
@@ -165,15 +184,23 @@ function App() {
 						relationshipStatus={relationshipStatus}
 						getChildren={getChildren}
 						children={children}
-						
 					/>
 				</div>
 
 				<div className="bg-orange-700">
 					<h2>Personality</h2>
-					<p>
-						{pronouns} {personalityTrait}
-					</p>
+					<div>
+						{personalityTraits.map((trait, index) => (
+							<>
+								<p key={index} className="py-3 flex items-center">
+									{pronouns} {trait}
+								</p>
+								{index !== personalityTraits.length - 1 && (
+									<hr />
+								)}
+							</>
+						))}
+					</div>
 				</div>
 				<AbilityScores />
 			</div>
