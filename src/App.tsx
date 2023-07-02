@@ -11,10 +11,12 @@ function App() {
 	const [species, setSpecies] = useState("human");
 	const [sex, setSex] = useState("female");
 	const [alignment, setAlignment] = useState("");
-
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [personalityTrait, setPersonalityTrait] = useState("");
+	const [orientation, setOrientation] = useState("");
+	const [relationshipStatus, setRelationshipStatus] = useState("");
+	const [children, setChildren] = useState(0);
 	const pronouns = getPronouns();
 
 	useEffect(() => {
@@ -59,6 +61,29 @@ function App() {
 		setAlignment(event.target.value);
 	};
 
+	const getOrientation = () => {
+		getDataFromField("orientationsDoc", "orientationsField").then(
+			(data) => {
+				const randomOrientation = getRandomValue(data);
+				setOrientation(randomOrientation || "random");
+			}
+		);
+	};
+
+	const getRelationshipStatus = () => {
+		getDataFromField("relationsDoc", "relationsField").then((data) => {
+			const randomRelationshipStatus = getRandomValue(data);
+			setRelationshipStatus(randomRelationshipStatus || "random");
+		});
+	};
+
+	const getChildren = () => {
+		getDataFromField("childrenDoc", "childrenField").then((data) => {
+			const randomChildren = getRandomValue(data);
+			setChildren(randomChildren || "random");
+		});
+	};
+
 	const handleClick = () => {
 		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
 		const lastNamesField = `${species}Names`;
@@ -73,6 +98,9 @@ function App() {
 			setLastName(randomLastName);
 		});
 		getPersonalityTrait();
+		getOrientation();
+		getRelationshipStatus();
+		getChildren();
 	};
 
 	return (
@@ -111,8 +139,14 @@ function App() {
 					</p>
 				</div>
 				<AbilityScores />
-				<Relations 
+				<Relations
 					getRandomValue={getRandomValue}
+					getOrientation={getOrientation}
+					getRelationshipStatus={getRelationshipStatus}
+					getChildren={getChildren}
+					orientation={orientation}
+					relationshipStatus={relationshipStatus}
+					children={children}
 				/>
 			</div>
 		</div>
