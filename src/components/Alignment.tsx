@@ -1,4 +1,8 @@
-function Alignment({ handleAlignmentChange }) {
+interface AlignmentProps {
+	handleAlignmentChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+function Alignment({ handleAlignmentChange }: AlignmentProps) {
 	return (
 		<div className="w-3/4">
 			<label htmlFor="alignment">Alignment</label>

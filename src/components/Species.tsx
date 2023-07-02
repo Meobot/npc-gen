@@ -1,4 +1,8 @@
-function Species({ handleSpeciesChange }) {
+interface SpeciesProps {
+	handleSpeciesChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+function Species({ handleSpeciesChange }: SpeciesProps) {
 	return (
 		<div className="w-3/4">
 			<label htmlFor="species">Species</label>
