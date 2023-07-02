@@ -5,7 +5,6 @@ import Alignment from "./components/Alignment";
 import MainDetails from "./components/MainDetails";
 import { getDataFromField } from "./firebase";
 import AbilityScores from "./components/AbilityScores";
-import Relations from "./components/Relations";
 
 function App() {
 	const [species, setSpecies] = useState("human");
