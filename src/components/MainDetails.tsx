@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import { getDataFromField } from "../firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+	faBriefcase,
+	faHeart,
+	faBabyCarriage,
+} from "@fortawesome/free-solid-svg-icons";
 
 function MainDetails(props) {
 	const getFirstName = () => {
@@ -28,18 +34,28 @@ function MainDetails(props) {
 	}, []);
 
 	return (
-		<>
-			<h2>
+		<div className="px-3 py-5">
+			<h2 className="text-3xl">
 				{props.firstName} {props.lastName}
 			</h2>
+			<div className="flex flex-col">
+				<div className="flex items-center space-x-2">
+					<FontAwesomeIcon icon={faBriefcase} /> <p>{props.job}</p>
+				</div>
+				<div className="flex items-center space-x-2">
+					<FontAwesomeIcon icon={faHeart} /> <p>{props.relationshipStatus}</p>
+				</div>
+				<div className="flex items-center space-x-2">
+					<FontAwesomeIcon icon={faBabyCarriage} /> <p>{props.children}</p>
+				</div>
+			</div>
 			<p>
 				{props.pronouns} {props.appearance}
 			</p>
 			<p>
 				{props.pronouns} {props.bodyType}
 			</p>
-			<p>Occupation: {props.job}</p>
-		</>
+		</div>
 	);
 }
 
