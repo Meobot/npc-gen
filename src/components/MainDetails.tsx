@@ -31,30 +31,38 @@ function MainDetails(props) {
 		props.getAppearance();
 		props.getBodyType();
 		props.getJob();
+		props.getRelationshipStatus();
+		props.getChildren();
 	}, []);
 
 	return (
-		<div className="px-3 py-5">
+		<div className="px-3 py-5 border-2 border-orange-400 rounded-xl">
 			<h2 className="text-3xl">
 				{props.firstName} {props.lastName}
 			</h2>
-			<div className="flex flex-col">
+			<hr className="my-2"></hr>
+			<div className="flex flex-col py-4 space-y-3">
 				<div className="flex items-center space-x-2">
 					<FontAwesomeIcon icon={faBriefcase} /> <p>{props.job}</p>
 				</div>
 				<div className="flex items-center space-x-2">
-					<FontAwesomeIcon icon={faHeart} /> <p>{props.relationshipStatus}</p>
+					<FontAwesomeIcon icon={faHeart} />{" "}
+					<p>{props.relationshipStatus}</p>
 				</div>
 				<div className="flex items-center space-x-2">
-					<FontAwesomeIcon icon={faBabyCarriage} /> <p>{props.children}</p>
+					<FontAwesomeIcon icon={faBabyCarriage} />{" "}
+					<p>{props.children}</p>
 				</div>
 			</div>
-			<p>
-				{props.pronouns} {props.appearance}
-			</p>
-			<p>
-				{props.pronouns} {props.bodyType}
-			</p>
+			<hr className="my-2"></hr>
+			<div className="py-4">
+				<p>
+					{props.pronouns} {props.appearance}
+				</p>
+				<p>
+					{props.pronouns} {props.bodyType}
+				</p>
+			</div>
 		</div>
 	);
 }
