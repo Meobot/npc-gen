@@ -5,6 +5,7 @@ import Alignment from "./components/Alignment";
 import MainDetails from "./components/MainDetails";
 import { getDataFromField } from "./firebase";
 import AbilityScores from "./components/AbilityScores";
+import PersonalityTraits from "./components/PersonalityTraits";
 
 function App() {
 	const [species, setSpecies] = useState("human");
@@ -143,6 +144,9 @@ function App() {
 		getAppearance();
 		getBodyType();
 		getJob();
+		getMultiplePersonalityTraits(3).then((traits) => {
+			setPersonalityTraits(traits);
+		});
 	};
 
 	return (
@@ -163,45 +167,31 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div className="bg-slate-800 text-white space-y-8 sm:col-span-2">
-				<div>
-					<MainDetails
-						species={species}
-						sex={sex}
-						firstName={firstName}
-						lastName={lastName}
-						setFirstName={setFirstName}
-						setLastName={setLastName}
-						getRandomValue={getRandomValue}
-						pronouns={pronouns}
-						getAppearance={getAppearance}
-						getBodyType={getBodyType}
-						appearance={appearance}
-						bodyType={bodyType}
-						getJob={getJob}
-						job={job}
-						getRelationshipStatus={getRelationshipStatus}
-						relationshipStatus={relationshipStatus}
-						getChildren={getChildren}
-						children={children}
-					/>
-				</div>
-
-				<div className="bg-orange-700">
-					<h2>Personality</h2>
-					<div>
-						{personalityTraits.map((trait, index) => (
-							<>
-								<p key={index} className="py-3 flex items-center">
-									{pronouns} {trait}
-								</p>
-								{index !== personalityTraits.length - 1 && (
-									<hr />
-								)}
-							</>
-						))}
-					</div>
-				</div>
+			<div className="text-white space-y-8 sm:col-span-2">
+				<MainDetails
+					species={species}
+					sex={sex}
+					firstName={firstName}
+					lastName={lastName}
+					setFirstName={setFirstName}
+					setLastName={setLastName}
+					getRandomValue={getRandomValue}
+					pronouns={pronouns}
+					getAppearance={getAppearance}
+					getBodyType={getBodyType}
+					appearance={appearance}
+					bodyType={bodyType}
+					getJob={getJob}
+					job={job}
+					getRelationshipStatus={getRelationshipStatus}
+					relationshipStatus={relationshipStatus}
+					getChildren={getChildren}
+					children={children}
+				/>
+				<PersonalityTraits 
+				personalityTraits={personalityTraits} 
+				pronouns={pronouns}
+				/>
 				<AbilityScores />
 			</div>
 		</div>
