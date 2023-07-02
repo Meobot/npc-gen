@@ -4,6 +4,7 @@ import Sex from "./components/Sex";
 import Alignment from "./components/Alignment";
 import MainDetails from "./components/MainDetails";
 import { getDataFromField } from "./firebase";
+import AbilityScores from "./components/AbilityScores";
 
 function App() {
 	const [species, setSpecies] = useState("human");
@@ -13,38 +14,25 @@ function App() {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [personalityTrait, setPersonalityTrait] = useState("");
-	const pronouns = getPronouns()
+	const pronouns = getPronouns();
 
 	useEffect(() => {
-		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
-		getDataFromField("namesDoc", firstNamesField).then((data) => {
-			const randomName = getRandomValue(data);
-			setFirstName(randomName || "random");
-		});
+		getPersonalityTrait();
 	}, []);
 
-	useEffect(() => {
-		const lastNamesField = `${species}Names`;
-		getDataFromField("namesDoc", lastNamesField).then((data) => {
-			const randomName = getRandomValue(data);
-			setLastName(randomName || "random");
-		});
-	}, []);
-
-	useEffect(() => {
+	function getPersonalityTrait() {
 		getDataFromField("personalityTraitsDoc", "personalityTraitsField").then(
 			(data) => {
 				const randomTrait = getRandomValue(data);
 				setPersonalityTrait(randomTrait || "random");
 			}
 		);
-	}, []);
+	}
 
 	function getPronouns() {
 		if (sex === "male") {
 			return "He";
-		} else if (sex === "female")
-			return "She";
+		} else if (sex === "female") return "She";
 		else return "They";
 	}
 
@@ -52,26 +40,6 @@ function App() {
 		const randomIndex = Math.floor(Math.random() * namesArray.length);
 		const randomName = namesArray[randomIndex];
 		return randomName;
-	};
-
-	const getAbilityScoreValues = () => {
-		const abilityScoreValues = {
-			strength: 0,
-			dexterity: 0,
-			constitution: 0,
-			intelligence: 0,
-			wisdom: 0,
-			charisma: 0,
-		};
-
-		const abilityScoreKeys = Object.keys(abilityScoreValues);
-
-		abilityScoreKeys.forEach((abilityScoreKey) => {
-			const randomValue = Math.floor(Math.random() * 15) + 3;
-			abilityScoreValues[abilityScoreKey as keyof typeof abilityScoreValues] = randomValue;
-		});
-
-		return abilityScoreValues;
 	};
 
 	const handleSpeciesChange = (
@@ -103,6 +71,7 @@ function App() {
 			setFirstName(randomFirstName);
 			setLastName(randomLastName);
 		});
+		getPersonalityTrait();
 	};
 
 	return (
@@ -127,9 +96,11 @@ function App() {
 				<MainDetails
 					species={species}
 					sex={sex}
-					alignment={alignment}
 					firstName={firstName}
 					lastName={lastName}
+					setFirstName={setFirstName}
+					setLastName={setLastName}
+					getRandomValue={getRandomValue}
 				/>
 
 				<div className="bg-orange-700">
@@ -138,15 +109,7 @@ function App() {
 						{pronouns} {personalityTrait}
 					</p>
 				</div>
-				<div className="bg-green-900">
-					<h2>Ability Scores</h2>
-					<p>Strength: {getAbilityScoreValues().strength}</p>
-					<p>Dexterity: {getAbilityScoreValues().dexterity}</p>
-					<p>Constitution: {getAbilityScoreValues().constitution}</p>
-					<p>Intelligence: {getAbilityScoreValues().intelligence}</p>
-					<p>Wisdom: {getAbilityScoreValues().wisdom}</p>
-					<p>Charisma: {getAbilityScoreValues().charisma}</p>
-				</div>
+				<AbilityScores />
 				<div className="bg-blue-900">
 					<h2>Relationships</h2>
 					<p>Sexual Orientation: Straight</p>
