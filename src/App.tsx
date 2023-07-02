@@ -17,6 +17,10 @@ function App() {
 	const [orientation, setOrientation] = useState("");
 	const [relationshipStatus, setRelationshipStatus] = useState("");
 	const [children, setChildren] = useState(0);
+	const [job, setJob] = useState("");
+	const [appearance, setAppearance] = useState("");
+	const [bodyType, setBodyType] = useState("");
+
 	const pronouns = getPronouns();
 
 	useEffect(() => {
@@ -84,6 +88,27 @@ function App() {
 		});
 	};
 
+	const getAppearance = () => {
+		getDataFromField("appearanceDoc", "appearanceField").then((data) => {
+			const randomAppearance = getRandomValue(data);
+			setAppearance(randomAppearance || "random");
+		});
+	};
+
+	const getBodyType = () => {
+		getDataFromField("bodyTypesDoc", "bodyTypesField").then((data) => {
+			const randomBodyType = getRandomValue(data);
+			setBodyType(randomBodyType || "random");
+		});
+	};
+
+	const getJob = () => {
+		getDataFromField("jobsDoc", "jobsField").then((data) => {
+			const randomJob = getRandomValue(data);
+			setJob(randomJob || "random");
+		});
+	};
+
 	const handleClick = () => {
 		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
 		const lastNamesField = `${species}Names`;
@@ -101,17 +126,20 @@ function App() {
 		getOrientation();
 		getRelationshipStatus();
 		getChildren();
+		getAppearance();
+		getBodyType();
+		getJob();
 	};
 
 	return (
 		<div className="container p-6 sm:grid sm:grid-cols-3 sm:gap-5">
-			<div className="bg-slate-500 flex flex-col justify-center items-center py-4 mb-8 sm:col-span-1">
-				<h1>NPC Dispenser</h1>
-				<div className="flex flex-col items-start w-3/4 space-y-2">
+			<div className="text-white flex flex-col justify-center items-center py-4 mb-8 sm:col-span-1">
+				<h1 className="mb-4 font-bold text-xl">NPC Dispenser</h1>
+				<div className="flex flex-col items-center w-full px-4 pt-4 space-y-5 border-2 border-sky-600 rounded-xl">
 					<Species handleSpeciesChange={handleSpeciesChange} />
 					<Sex handleSexChange={handleSexChange} />
 					<Alignment handleAlignmentChange={handleAlignmentChange} />
-					<div className="w-full flex justify-center">
+					<div className="w-full flex justify-center py-5">
 						<button
 							className="bg-blue-500 px-6 py-2 rounded-xl"
 							onClick={handleClick}
@@ -122,15 +150,24 @@ function App() {
 				</div>
 			</div>
 			<div className="bg-slate-800 text-white space-y-8 sm:col-span-2">
-				<MainDetails
-					species={species}
-					sex={sex}
-					firstName={firstName}
-					lastName={lastName}
-					setFirstName={setFirstName}
-					setLastName={setLastName}
-					getRandomValue={getRandomValue}
-				/>
+				<div>
+					<MainDetails
+						species={species}
+						sex={sex}
+						firstName={firstName}
+						lastName={lastName}
+						setFirstName={setFirstName}
+						setLastName={setLastName}
+						getRandomValue={getRandomValue}
+						pronouns={pronouns}
+						getAppearance={getAppearance}
+						getBodyType={getBodyType}
+						appearance={appearance}
+						bodyType={bodyType}
+						getJob={getJob}
+						job={job}
+					/>
+				</div>
 
 				<div className="bg-orange-700">
 					<h2>Personality</h2>

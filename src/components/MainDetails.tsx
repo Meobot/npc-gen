@@ -22,14 +22,24 @@ function MainDetails(props) {
 	useEffect(() => {
 		getFirstName();
 		getLastName();
+		props.getAppearance();
+		props.getBodyType();
+		props.getJob();
 	}, []);
-	
+
 	return (
-		<div>
+		<>
 			<h2>
 				{props.firstName} {props.lastName}
 			</h2>
-		</div>
+			<p>
+				{props.pronouns} {props.appearance}
+			</p>
+			<p>
+				{props.pronouns} {props.bodyType}
+			</p>
+			<p>Occupation: {props.job}</p>
+		</>
 	);
 }
 
