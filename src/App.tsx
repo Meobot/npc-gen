@@ -166,6 +166,8 @@ function App() {
 						bodyType={bodyType}
 						getJob={getJob}
 						job={job}
+						relationshipStatus={relationshipStatus}
+						children={children}
 					/>
 				</div>
 
@@ -176,15 +178,6 @@ function App() {
 					</p>
 				</div>
 				<AbilityScores />
-				<Relations
-					getRandomValue={getRandomValue}
-					getOrientation={getOrientation}
-					getRelationshipStatus={getRelationshipStatus}
-					getChildren={getChildren}
-					orientation={orientation}
-					relationshipStatus={relationshipStatus}
-					children={children}
-				/>
 			</div>
 		</div>
 	);
