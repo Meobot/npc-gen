@@ -67,8 +67,8 @@ function App() {
 		const abilityScoreKeys = Object.keys(abilityScoreValues);
 
 		abilityScoreKeys.forEach((abilityScoreKey) => {
-			const randomValue = Math.floor(Math.random() * 18) + 3;
-			abilityScoreValues[abilityScoreKey] = randomValue;
+			const randomValue = Math.floor(Math.random() * 15) + 3;
+			abilityScoreValues[abilityScoreKey as keyof typeof abilityScoreValues] = randomValue;
 		});
 
 		return abilityScoreValues;
