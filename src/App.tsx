@@ -22,18 +22,7 @@ function App() {
 
 	const pronouns = getPronouns();
 
-	useEffect(() => {
-		getPersonalityTrait();
-	}, []);
 
-	function getPersonalityTrait() {
-		getDataFromField("personalityTraitsDoc", "personalityTraitsField").then(
-			(data) => {
-				const randomTrait = getRandomValue(data);
-				setPersonalityTrait(randomTrait || "random");
-			}
-		);
-	}
 
 	function getPronouns() {
 		if (sex === "male") {
@@ -108,6 +97,13 @@ function App() {
 		});
 	};
 
+	const getPersonalityTrait = () => {
+		getDataFromField("personalityDoc", "personalityField").then((data) => {
+			const randomPersonalityTrait = getRandomValue(data);
+			setPersonalityTrait(randomPersonalityTrait || "random");
+		});
+	};
+
 	const handleClick = () => {
 		const firstNamesField = sex === "male" ? "maleNames" : "femaleNames";
 		const lastNamesField = `${species}Names`;
@@ -165,8 +161,11 @@ function App() {
 						bodyType={bodyType}
 						getJob={getJob}
 						job={job}
+						getRelationshipStatus={getRelationshipStatus}
 						relationshipStatus={relationshipStatus}
+						getChildren={getChildren}
 						children={children}
+						
 					/>
 				</div>
 
