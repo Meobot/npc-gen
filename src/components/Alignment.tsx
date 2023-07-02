@@ -1,11 +1,11 @@
 function Alignment({ handleAlignmentChange }) {
 	return (
-		<>
+		<div className="w-3/4">
 			<label htmlFor="alignment">Alignment</label>
 			<select
 				name="alignment"
 				id="alignment"
-				className="w-full"
+				className="w-full text-black"
 				onChange={handleAlignmentChange}
 			>
 				<option value="random">Random</option>
@@ -19,7 +19,7 @@ function Alignment({ handleAlignmentChange }) {
 				<option value="neutral-evil">Neutral Evil</option>
 				<option value="chaotic-evil">Chaotic Evil</option>
 			</select>
-		</>
+		</div>
 	);
 }
 

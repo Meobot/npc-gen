@@ -9,31 +9,6 @@ function Relations(props) {
 		props.getChildren();
 	}, []);
 
-	// function getOrientation() {
-	// 	getDataFromField("orientationsDoc", "orientationsField").then((data) => {
-	// 		const randomOrientation = props.getRandomValue(data);
-	// 		setOrientation(randomOrientation || "random");
-	// 	});
-	// }
-
-	// function getRelationshipStatus() {
-	// 	getDataFromField("relationsDoc", "relationsField").then(
-	// 		(data) => {
-	// 			const randomRelationshipStatus = props.getRandomValue(data);
-	// 			setRelationshipStatus(randomRelationshipStatus || "random");
-	// 		}
-	// 	);
-	// }
-
-	// function getChildren() {
-	// 	getDataFromField("childrenDoc", "childrenField").then(
-	// 		(data) => {
-	// 			const randomChildren = props.getRandomValue(data);
-	// 			setChildren(randomChildren || "random");
-	// 		}
-	// 	);
-	// }
-
 	return (
 		<div className="bg-blue-900">
 			<h2>Relationships</h2>

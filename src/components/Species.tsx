@@ -1,11 +1,11 @@
 function Species({ handleSpeciesChange }) {
 	return (
-		<>
+		<div className="w-3/4">
 			<label htmlFor="species">Species</label>
 			<select
 				name="species"
 				id="species"
-				className="w-full"
+				className="w-full text-black"
 				onChange={handleSpeciesChange}
 			>
 				<option value="random">Random</option>
@@ -17,7 +17,7 @@ function Species({ handleSpeciesChange }) {
 				<option value="dragonborn">Dragonborn</option>
 				<option value="tiefling">Tiefling</option>
 			</select>
-		</>
+		</div>
 	);
 }
 
