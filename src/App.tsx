@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Species from "./components/Species";
 import Sex from "./components/Sex";
 import Alignment from "./components/Alignment";
@@ -20,8 +20,9 @@ function App() {
 	const [job, setJob] = useState("");
 	const [appearance, setAppearance] = useState("");
 	const [bodyType, setBodyType] = useState("");
-
-	const pronouns = getPronouns();
+	const pronouns = useMemo(() => {
+		return getPronouns();
+	}, [firstName, lastName])
 
 	useEffect(() => {
 		getMultiplePersonalityTraits(3).then((traits) => {
@@ -150,7 +151,7 @@ function App() {
 	};
 
 	return (
-		<div className="container p-6 sm:grid sm:grid-cols-3 sm:gap-5">
+		<div className="container p-6">
 			<div className="text-white flex flex-col justify-center items-center py-4 mb-8 sm:col-span-1">
 				<h1 className="mb-4 font-bold text-xl">NPC Dispenser</h1>
 				<div className="flex flex-col items-center w-full px-4 pt-4 space-y-5 border-2 border-sky-600 rounded-xl">
@@ -167,7 +168,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-			<div className="text-white space-y-8 sm:col-span-2">
+			<div className="text-white space-y-8 grid md:grid-cols-2 lg:grid-cols-3">
 				<MainDetails
 					species={species}
 					sex={sex}
@@ -192,7 +193,10 @@ function App() {
 				personalityTraits={personalityTraits} 
 				pronouns={pronouns}
 				/>
-				<AbilityScores />
+				<AbilityScores 
+					firstName={firstName}
+					lastName={lastName}
+				/>
 			</div>
 		</div>
 	);
