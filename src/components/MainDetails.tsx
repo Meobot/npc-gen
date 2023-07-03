@@ -55,7 +55,7 @@ function MainDetails(props) {
 				</div>
 			</div>
 			<hr className="my-1"></hr>
-			<div className="py-2 space-y-4">
+			<div className="py-2 space-y-3">
 				<h2 className="text-2xl">Appearance</h2>
 				<p>
 					{props.pronouns} {props.appearance}
