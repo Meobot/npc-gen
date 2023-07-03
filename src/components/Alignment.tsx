@@ -9,7 +9,7 @@ function Alignment({ handleAlignmentChange }: AlignmentProps) {
 			<select
 				name="alignment"
 				id="alignment"
-				className="w-full text-black"
+				className="w-full text-black bg-sky-300 rounded-lg p-3"
 				onChange={handleAlignmentChange}
 			>
 				<option value="random">Random</option>

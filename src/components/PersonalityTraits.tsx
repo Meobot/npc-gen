@@ -1,7 +1,7 @@
 function PersonalityTraits({ personalityTraits, pronouns }) {
 	return (
 		<div className="px-3 py-5 border-2 border-orange-400 rounded-xl">
-			<h2>Personality</h2>
+			<h2 className="text-2xl">Personality</h2>
 			<div>
 				{personalityTraits.map((trait, index) => (
 					<>

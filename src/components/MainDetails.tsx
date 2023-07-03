@@ -54,8 +54,9 @@ function MainDetails(props) {
 					<p>{props.children}</p>
 				</div>
 			</div>
-			<hr className="my-2"></hr>
-			<div className="py-4">
+			<hr className="my-1"></hr>
+			<div className="py-2 space-y-4">
+				<h2 className="text-2xl">Appearance</h2>
 				<p>
 					{props.pronouns} {props.appearance}
 				</p>

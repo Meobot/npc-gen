@@ -22,7 +22,7 @@ function AbilityScores() {
 	};
 	return (
 		<div className="px-3 py-5 border-2 border-orange-400 rounded-xl">
-			<h2>Ability Scores</h2>
+			<h2 className="text-2xl mb-2">Ability Scores</h2>
 			<p>Strength: {getAbilityScoreValues().strength}</p>
 			<p>Dexterity: {getAbilityScoreValues().dexterity}</p>
 			<p>Constitution: {getAbilityScoreValues().constitution}</p>

@@ -9,7 +9,7 @@ function Species({ handleSpeciesChange }: SpeciesProps) {
 			<select
 				name="species"
 				id="species"
-				className="w-full text-black"
+				className="w-full text-black bg-sky-300 rounded-lg p-3"
 				onChange={handleSpeciesChange}
 			>
 				<option value="random">Random</option>
