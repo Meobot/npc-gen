@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getDataFromField } from "../firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
