@@ -3,9 +3,9 @@ import Species from "./components/Species";
 import Sex from "./components/Sex";
 import Alignment from "./components/Alignment";
 import MainDetails from "./components/MainDetails";
-import { getDataFromField } from "./firebase";
 import AbilityScores from "./components/AbilityScores";
 import PersonalityTraits from "./components/PersonalityTraits";
+import { getDataFromField } from "./firebase";
 
 function App() {
 	const [species, setSpecies] = useState(() => {
