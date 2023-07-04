@@ -8,12 +8,28 @@ import AbilityScores from "./components/AbilityScores";
 import PersonalityTraits from "./components/PersonalityTraits";
 
 function App() {
-	const [species, setSpecies] = useState("human");
-	const [sex, setSex] = useState("female");
+	const [species, setSpecies] = useState(() => {
+		const speciesArray = [
+			"human",
+			"elf",
+			"dwarf",
+			"halfling",
+			"gnome",
+			"tiefling",
+			"dragonborn",
+		];
+		const randomSpecies = Math.floor(Math.random() * speciesArray.length);
+		return speciesArray[randomSpecies];
+	});
+	const [sex, setSex] = useState(() => {
+		const sexesArray = ["male", "female"];
+		const randomSex = Math.floor(Math.random() * sexesArray.length);
+		return sexesArray[randomSex];
+	});
 	const [alignment, setAlignment] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
-	const [personalityTraits, setPersonalityTraits] = useState<string[]>([]);
+	const [personalityTraits, setPersonalityTraits] = useState([]);
 	const [orientation, setOrientation] = useState("");
 	const [relationshipStatus, setRelationshipStatus] = useState("");
 	const [children, setChildren] = useState(0);
@@ -22,8 +38,8 @@ function App() {
 	const [bodyType, setBodyType] = useState("");
 	const pronouns = useMemo(() => {
 		return getPronouns();
-	}, [firstName, lastName])
-
+	}, [firstName, lastName]);
+	
 	useEffect(() => {
 		getMultiplePersonalityTraits(3).then((traits) => {
 			setPersonalityTraits(traits);
@@ -34,10 +50,12 @@ function App() {
 		if (sex === "male") {
 			return "He";
 		} else if (sex === "female") return "She";
-		else return "They";
 	}
 
 	const getRandomValue = (namesArray) => {
+		if (!namesArray || namesArray.length === 0) {
+			return "";
+		}
 		const randomIndex = Math.floor(Math.random() * namesArray.length);
 		const randomName = namesArray[randomIndex];
 		return randomName;
@@ -172,6 +190,8 @@ function App() {
 				<MainDetails
 					species={species}
 					sex={sex}
+					setSex={setSex}
+					setSpecies={setSpecies}
 					firstName={firstName}
 					lastName={lastName}
 					setFirstName={setFirstName}
@@ -189,14 +209,11 @@ function App() {
 					getChildren={getChildren}
 					children={children}
 				/>
-				<PersonalityTraits 
-				personalityTraits={personalityTraits} 
-				pronouns={pronouns}
+				<PersonalityTraits
+					personalityTraits={personalityTraits}
+					pronouns={pronouns}
 				/>
-				<AbilityScores 
-					firstName={firstName}
-					lastName={lastName}
-				/>
+				<AbilityScores firstName={firstName} lastName={lastName} />
 			</div>
 		</div>
 	);
