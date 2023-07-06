@@ -52,13 +52,13 @@ function App() {
 		} else if (sex === "female") return "She";
 	}
 
-	const getRandomValue = (namesArray) => {
-		if (!namesArray || namesArray.length === 0) {
+	const getRandomValue = (valuesArray) => {
+		if (!valuesArray || valuesArray.length === 0) {
 			return "";
 		}
-		const randomIndex = Math.floor(Math.random() * namesArray.length);
-		const randomName = namesArray[randomIndex];
-		return randomName;
+		const randomIndex = Math.floor(Math.random() * valuesArray.length);
+		const randomValue = valuesArray[randomIndex];
+		return randomValue;
 	};
 
 	const handleSpeciesChange = (
