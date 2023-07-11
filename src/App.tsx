@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import Species from "./components/Species";
-import Sex from "./components/Sex";
-import Alignment from "./components/Alignment";
+import Choices from "./components/Choices";
 import MainDetails from "./components/MainDetails";
 import AbilityScores from "./components/AbilityScores";
 import PersonalityTraits from "./components/PersonalityTraits";
@@ -172,19 +170,12 @@ function App() {
 		<div className="container p-6">
 			<div className="text-white flex flex-col justify-center items-center py-4 mb-8 sm:col-span-1">
 				<h1 className="mb-4 font-bold text-xl">NPC Dispenser</h1>
-				<div className="flex flex-col items-center w-full max-w-sm px-4 pt-4 space-y-5 border-2 border-sky-600 rounded-xl">
-					<Species handleSpeciesChange={handleSpeciesChange} />
-					<Sex handleSexChange={handleSexChange} />
-					<Alignment handleAlignmentChange={handleAlignmentChange} />
-					<div className="w-full flex justify-center py-5">
-						<button
-							className="bg-blue-500 px-6 py-2 rounded-xl"
-							onClick={handleClick}
-						>
-							Generate
-						</button>
-					</div>
-				</div>
+				<Choices 
+					handleSpeciesChange={handleSpeciesChange}
+					handleSexChange={handleSexChange}
+					handleAlignmentChange={handleAlignmentChange}
+					handleClick={handleClick}
+				/>
 			</div>
 			<div className="text-white space-y-8 grid md:grid-cols-2 lg:grid-cols-3 lg:space-x-5 md:space-y-0">
 				<MainDetails
