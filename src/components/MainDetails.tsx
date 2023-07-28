@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getDataFromField } from "../firebase";
+import { getDataFromField } from "../firebaseConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faBriefcase,
