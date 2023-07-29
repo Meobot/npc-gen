@@ -14,7 +14,7 @@ const AbilityScores = ({ firstName, lastName }) => {
     const abilityScoreKeys = Object.keys(abilityScoreValues);
 
     abilityScoreKeys.forEach((abilityScoreKey) => {
-      const randomValue = Math.floor(Math.random() * 15) + 7;
+      const randomValue = Math.floor(Math.random() * 11) + 7;
       abilityScoreValues[
         abilityScoreKey as keyof typeof abilityScoreValues
       ] = randomValue;
