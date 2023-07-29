@@ -28,7 +28,6 @@ function App() {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [personalityTraits, setPersonalityTraits] = useState([]);
-	const [orientation, setOrientation] = useState("");
 	const [relationshipStatus, setRelationshipStatus] = useState("");
 	const [children, setChildren] = useState(0);
 	const [job, setJob] = useState("");
@@ -73,15 +72,6 @@ function App() {
 		event: React.ChangeEvent<HTMLSelectElement>
 	) => {
 		setAlignment(event.target.value);
-	};
-
-	const getOrientation = () => {
-		getDataFromField("orientationsDoc", "orientationsField").then(
-			(data) => {
-				const randomOrientation = getRandomValue(data);
-				setOrientation(randomOrientation || "random");
-			}
-		);
 	};
 
 	const getRelationshipStatus = () => {
@@ -155,7 +145,6 @@ function App() {
 			setLastName(randomLastName);
 		});
 		getPersonalityTrait();
-		getOrientation();
 		getRelationshipStatus();
 		getChildren();
 		getAppearance();
@@ -180,8 +169,7 @@ function App() {
 			<MainDetails
 				species={species}
 				sex={sex}
-				setSex={setSex}
-				setSpecies={setSpecies}
+				alignment={alignment}
 				firstName={firstName}
 				lastName={lastName}
 				setFirstName={setFirstName}
