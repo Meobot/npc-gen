@@ -3,7 +3,7 @@ import Choices from "./components/Choices";
 import MainDetails from "./components/MainDetails";
 import AbilityScores from "./components/AbilityScores";
 import PersonalityTraits from "./components/PersonalityTraits";
-import { getDataFromField } from "./firebase";
+import { getDataFromField } from "./firebaseConfig";
 
 function App() {
 	const [species, setSpecies] = useState(() => {
@@ -37,7 +37,7 @@ function App() {
 	const pronouns = useMemo(() => {
 		return getPronouns();
 	}, [firstName, lastName]);
-	
+
 	useEffect(() => {
 		getMultiplePersonalityTraits(3).then((traits) => {
 			setPersonalityTraits(traits);
@@ -167,45 +167,43 @@ function App() {
 	};
 
 	return (
-		<div className="container p-6">
-			<div className="text-white flex flex-col justify-center items-center py-4 mb-8 sm:col-span-1">
+		<div className="App container px-3 space-y-4 mt-6">
+			<div className="text-white flex flex-col justify-center items-center">
 				<h1 className="mb-4 font-bold text-xl">NPC Dispenser</h1>
-				<Choices 
+				<Choices
 					handleSpeciesChange={handleSpeciesChange}
 					handleSexChange={handleSexChange}
 					handleAlignmentChange={handleAlignmentChange}
 					handleClick={handleClick}
 				/>
 			</div>
-			<div className="text-white space-y-8 grid md:grid-cols-2 lg:grid-cols-3 lg:space-x-5 md:space-y-0">
-				<MainDetails
-					species={species}
-					sex={sex}
-					setSex={setSex}
-					setSpecies={setSpecies}
-					firstName={firstName}
-					lastName={lastName}
-					setFirstName={setFirstName}
-					setLastName={setLastName}
-					getRandomValue={getRandomValue}
-					pronouns={pronouns}
-					getAppearance={getAppearance}
-					getBodyType={getBodyType}
-					appearance={appearance}
-					bodyType={bodyType}
-					getJob={getJob}
-					job={job}
-					getRelationshipStatus={getRelationshipStatus}
-					relationshipStatus={relationshipStatus}
-					getChildren={getChildren}
-					children={children}
-				/>
-				<PersonalityTraits
-					personalityTraits={personalityTraits}
-					pronouns={pronouns}
-				/>
-				<AbilityScores firstName={firstName} lastName={lastName} />
-			</div>
+			<MainDetails
+				species={species}
+				sex={sex}
+				setSex={setSex}
+				setSpecies={setSpecies}
+				firstName={firstName}
+				lastName={lastName}
+				setFirstName={setFirstName}
+				setLastName={setLastName}
+				getRandomValue={getRandomValue}
+				pronouns={pronouns}
+				getAppearance={getAppearance}
+				getBodyType={getBodyType}
+				appearance={appearance}
+				bodyType={bodyType}
+				getJob={getJob}
+				job={job}
+				getRelationshipStatus={getRelationshipStatus}
+				relationshipStatus={relationshipStatus}
+				getChildren={getChildren}
+				children={children}
+			/>
+			<PersonalityTraits
+				personalityTraits={personalityTraits}
+				pronouns={pronouns}
+			/>
+			<AbilityScores firstName={firstName} lastName={lastName} />
 		</div>
 	);
 }

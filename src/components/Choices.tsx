@@ -4,7 +4,7 @@ import Alignment from "./Alignment";
 
 function Choices({ handleSpeciesChange, handleSexChange, handleAlignmentChange, handleClick }) {
   return (
-	<div className="flex flex-col items-center w-full max-w-sm px-4 pt-4 space-y-5 border-2 border-sky-600 rounded-xl">
+	<div className="flex flex-col items-center w-full max-w-sm px-4 pt-4 space-y-5 border-2 border-sky-600 rounded-xl bg-black mx-12">
 	<Species handleSpeciesChange={handleSpeciesChange} />
 	<Sex handleSexChange={handleSexChange} />
 	<Alignment handleAlignmentChange={handleAlignmentChange} />

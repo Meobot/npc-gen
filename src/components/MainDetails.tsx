@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getDataFromField } from "../firebase";
+import { getDataFromField } from "../firebaseConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faBriefcase,
@@ -36,7 +36,7 @@ function MainDetails(props) {
 	}, []);
 
 	return (
-		<div className="px-3 py-5 border-2 border-orange-400 rounded-xl">
+		<div className="px-3 py-5 border-2 border-orange-400 rounded-xl bg-black text-white">
 			<h2 className="text-3xl">
 				{props.firstName} {props.lastName}
 			</h2>

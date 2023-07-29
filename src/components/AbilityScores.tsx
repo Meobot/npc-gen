@@ -24,7 +24,7 @@ const AbilityScores = ({ firstName, lastName }) => {
   }, [firstName, lastName]);
 
   return (
-    <div className="px-3 py-5 border-2 border-orange-400 rounded-xl space-y-5">
+    <div className="px-3 py-5 border-2 border-orange-400 rounded-xl space-y-5 bg-black text-white">
       <h2 className="text-2xl mb-2">Ability Scores</h2>
       <p>Strength: {getAbilityScoreValues.strength}</p>
       <p>Dexterity: {getAbilityScoreValues.dexterity}</p>
